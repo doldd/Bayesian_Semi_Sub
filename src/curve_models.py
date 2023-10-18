@@ -9,7 +9,8 @@ from torchmetrics import MetricCollection, AUROC, CalibrationError, SumMetric
 import argparse
 import wandb
 from pytorch_lightning.callbacks import Callback
-from subspace import curves
+# from ./dnn import curves
+from ..dnn-mode-connectivity/dnn import curves
 from copy import deepcopy
 
 from src.base_models import BaseModel
