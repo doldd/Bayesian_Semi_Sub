@@ -1,3 +1,3 @@
-[submodule "dnn-mode-connectivity"]
-	path = dnn-mode-connectivity
+[submodule "src/dnn-mode-connectivity"]
+	path = src/dnn-mode-connectivity
 	url = git@github.com:timgaripov/dnn-mode-connectivity.git
