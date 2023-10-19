@@ -10,7 +10,7 @@ import argparse
 import wandb
 from pytorch_lightning.callbacks import Callback
 # from ./dnn import curves
-from dnn-mode-connectivity import curves
+from src.dnn_mode_connectivity import curves
 from copy import deepcopy
 
 from src.base_models import BaseModel
