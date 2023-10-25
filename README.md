@@ -1,13 +1,16 @@
 # Bayesian Semi-structured Subspace Inference
 
-This repository contrains the code for the Bayesian Semi-structured Subspace Inference paper.
-All worke was logged trough a local installed Weights & Biases instences.
+This repository contains the code for the Bayesian Semi-structured Subspace Inference paper. 
+All work was tracked using locally installed Weights & Biases instances. 
+Please note that the log files are not included in this repository.
 
-The 
+We also incorporated code snippets from the following sources:
 
-As the logged files are not instances of this repository, users must recomuptate the reuslts.
+    https://github.com/wjmaddox/drbayes/
+    https://github.com/timgaripov/dnn-mode-connectivity
+    https://github.com/jgwiese/mcmc_bnn_symmetry
 
-In the following gives an overview over the used files per experiements. 
+The following listing provides an overview of the files used in each experiment:
 
 ### Experiment 1 (Toy Data)
  - semi_regression_Laplace.ipynb
