@@ -21,8 +21,8 @@ The following listing provides an overview of the files used in each experiment:
 - simulation_coverage_analyse.ipynb (To analyse)
 - simulation_coverage.py (To train)
     We used the following configurations:
-    - simulation_coverage.py -n 75 --lr 5e-3 --num_runs 50 --num_chains 10 --num_warmup 400 --num_samples 800 --dist normal_mu --use_hmc --p_struct=3 --num_bends {3, 5, 9,13, 17}
-    - simulation_coverage.py -n 75 --lr 5e-4 --num_runs 50 --num_chains 10 --num_warmup 400 --num_samples 800 --dist poisson --use_hmc --p_struct=3 --max_epochs=2000 --num_bends={3, 5, 9,13, 17}
+    simulation_coverage.py -n 75 --lr 5e-3 --num_runs 50 --num_chains 10 --num_warmup 400 --num_samples 800 --dist normal_mu --use_hmc --p_struct=3 --num_bends {3, 5, 9,13, 17}
+    simulation_coverage.py -n 75 --lr 5e-4 --num_runs 50 --num_chains 10 --num_warmup 400 --num_samples 800 --dist poisson --use_hmc --p_struct=3 --max_epochs=2000 --num_bends={3, 5, 9,13, 17}
 
 ### Experiment 3 (UCI Benchmark)
  - UCI_benchmark.py
