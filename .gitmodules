@@ -1,6 +1,3 @@
 [submodule "src/dnn_mode_connectivity"]
 	path = src/dnn_mode_connectivity
 	url = git@github.com:timgaripov/dnn-mode-connectivity.git
-[submodule "src/subspace_inference"]
-	path = src/subspace_inference
-	url = git@github.com:wjmaddox/drbayes.git

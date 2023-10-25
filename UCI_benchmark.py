@@ -60,37 +60,6 @@ def plot_curve_solutions_uci_regression(exp_col: expCollector, best_curve_model,
     plt.ylabel(r'nll ~ $N(y|\mu=DNN(),\sigma=0.005)$')
     wandb_logger.experiment.log({"Bézier Curve NLL": wandb.Image(plt.gcf())})
 
-    # %% plot predictive performance
-    # z = np.linspace(-10, 10, 100)
-    # feature = (features(z) - exp_col.f_mean) / exp_col.f_std
-    # inp = torch.from_numpy(feature.astype(np.float32)).to(device=device)
-    # trajectories = []
-    # for t in t_space:
-    #     out = best_curve_model.model(inp, t)
-    #     trajectories.append(out.detach().cpu().numpy().ravel())
-    # trajectories = np.vstack(trajectories)
-
-    # def plot_samples(x_axis, preds, ax, color='blue'):
-    #     mu = preds.mean(0)
-    #     sigma = preds.std(0)
-
-    #     ax.plot(x_axis, mu, "-", lw=2., color=color)
-    #     ax.plot(x_axis, mu - 3 * sigma, "-", lw=0.75, color=color)
-    #     ax.plot(x_axis, mu + 3 * sigma, "-", lw=0.75, color=color)
-
-    #     np.random.shuffle(preds)
-    #     for traj in preds[:10]:
-    #         ax.plot(x_axis, traj, "-", alpha=.25, color=color, lw=1.)
-
-    #     ax.fill_between(x_axis, mu - 3 * sigma, mu + 3 * sigma, alpha=0.35, color=color)
-
-    # fig = plt.figure(figsize=(9., 7.))
-    # plot_data(exp_col)
-    # ax = fig.gca()
-    # plot_samples(z, trajectories, ax=ax, color=sns.color_palette()[0])
-    # plt.title("Curve Solution")
-    # wandb_logger.experiment.log({"prediction": wandb.Image(plt.gcf())})
-
     # %% plot subspace
     mean, cov, S = span_space_from_curve_model(best_curve_model.model.cpu(), exp_col.num_bends)
     subspace_model = getModel(RegNet, mean=mean, cov_factor=cov, **exp_col.base_net_kwargs, **exp_col.net_kwargs).to(
@@ -202,13 +171,6 @@ def run_hmc_on_subspace_no_struct(num_chains, num_warmup, num_samples, prior_sca
                             description="pyro model state dict")
     art.add_file("model_state_dict.pt")
     wandb_logger.experiment.log_artifact(art)
-
-    # # compute valid lppd
-    # if exp_col.valid_dataloader is not None:
-    #     u_valid, y_valid = exp_col.valid_dataloader.dataset[:]
-    #     lppd_valid = log_pointwise_predictive_likelihood(pyro_model, mcmc.get_samples(), u=u_valid, y=y_valid.squeeze())
-    #     lppd_valid = (torch.logsumexp(lppd_valid, dim=0) - np.log(lppd_valid.shape[0])).sum()
-    #     wandb_logger.experiment.summary["valid_mlppd"] = lppd_valid / len(y_valid)
 
     # compute test lppd
     if exp_col.test_dataloader is not None:
@@ -393,15 +355,5 @@ if '__main__' == __name__:
                                                                 curve_wandb_id=wandb_curve_exp_id)
                 # %%
                 print(az.summary(az_post_hmc))
-
-                # # %%
-                # u_test, y_test = exp_col.test_dataloader.dataset[:]
-                # point_ll = log_pointwise_predictive_likelihood(pyro_model, mcmc.get_samples(), u=u_test, y=y_test.squeeze())
-                # lppd_test = (torch.logsumexp(point_ll, dim=0) - np.log(point_ll.shape[0])).sum()
-                # lppd_test / len(y_test)
-
-                # # %%
-                # prob = torch.exp(point_ll)
-                # lppd_test_exp = torch.log(prob.mean(0)).mean()
 
 
